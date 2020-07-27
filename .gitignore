@@ -55,3 +55,8 @@ celerybeat-schedule
 celerybeat.pid
 .python_history
 .ssh
+
+# django migrations 
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py

@@ -35,7 +35,10 @@ class LogoutInvalidatedSessionsMiddleware(MiddlewareMixin):
         if user.is_authenticated:
             first_seen = request.session.get("first_seen")
             if first_seen:
-                change_time = user.profile.fxa_password_change
+                try:
+                    change_time = user.profile.fxa_password_change
+                except:
+                    change_time = None
                 if change_time and change_time > first_seen:
                     logout(request)
                     return HttpResponseRedirect(reverse("home"))
